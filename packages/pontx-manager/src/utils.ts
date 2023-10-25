@@ -51,7 +51,7 @@ export async function fetchRemoteCacheSpec(logger: PontLogger, outDir: string, o
 }
 
 export const findRealPath = (configDir: string, pluginPath: string) => {
-  if (configDir === "/") {
+  if (path.parse(configDir).root === configDir) {
     return pluginPath;
   }
   let retPath = path.join(configDir, "node_modules", pluginPath);

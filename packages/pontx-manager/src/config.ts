@@ -124,15 +124,17 @@ export function requireModule(pluginPath: string, configDir: string, rootDir: st
       ? path.join(configDir, pluginPath)
       : findRealPath(configDir, pluginPath);
 
-  if (
-    [
-      "pontx-meta-fetch-plugin",
-      "pontx-react-hooks-generate-plugin",
-      "pontx-oas2-parser-plugin",
-      "pontx-mocks-plugin",
-    ].includes(pluginPath)
-  ) {
-    requirePath = pluginPath;
+  if (pluginPath === "pontx-meta-fetch-plugin") {
+    return require("pontx-meta-fetch-plugin");
+  }
+  if (pluginPath === "pontx-react-hooks-generate-plugin") {
+    return require("pontx-react-hooks-generate-plugin");
+  }
+  if (pluginPath === "pontx-oas2-parser-plugin") {
+    return require("pontx-oas2-parser-plugin");
+  }
+  if (pluginPath === "pontx-mocks-plugin") {
+    return require("pontx-mocks-plugin");
   }
 
   if (!path.extname(requirePath)) {
